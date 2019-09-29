@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+		"module": "commonjs",
+		"target": "es6",
+		"sourceMap": true,
+		"rootDir": "..",
+		"outDir": "../app",
+		"noEmit": false,
+		"moduleResolution": "node",
+		"emitDecoratorMetadata": true,
+		"experimentalDecorators": true,
+		"removeComments": false,
+		"noImplicitAny": false,
+		"suppressImplicitAnyIndexErrors": true,
+		"typeRoots": [
+			"node_modules/@types"
+		],
+		"types": [
+			"node"
+		]
+	},
+	"include": [ "../core/**/*.ts", "../src/**/*.ts" ],
+	"exclude": [ "../node_modules", "../src/views/**/*.ts" ]
+
+}
