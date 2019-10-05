@@ -7,7 +7,7 @@ export default class LoaderController extends Controller
 		let window = {
 			width: 200, height: 300,
 			frame: false, alwaysOnTop: true, show: false,
-			opacity : 0, title : "Rhapsody",
+			opacity : 0, title : "Itiel",
 			webPreferences: { nodeIntegration: false, contextIsolation: true },
 			onReady: ( event : Event ) => {
 				windows.get( "load/loader" ).show();

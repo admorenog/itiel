@@ -21,7 +21,7 @@
 			"console": "integratedTerminal"
 		},
 		{
-			"name": "Debug Rhapsody",
+			"name": "Debug Itiel",
 			"type": "node",
 			"request": "launch",
 			"cwd": "${workspaceRoot}",

@@ -5,10 +5,12 @@ const livereload = require( 'gulp-livereload' );
 const del = require( 'del' );
 const ts = require( 'gulp-typescript' );
 const sass = require( 'gulp-sass' );
-const sourcemaps = require( 'gulp-sourcemaps' );
 const notifier = require( 'node-notifier' );
 const child_process = require( 'child_process' );
 const path = require( 'path' );
+const sourcemaps = require( 'gulp-sourcemaps' );
+const babel = require( 'gulp-babel' );
+const concat = require( 'gulp-concat' );
 
 function clean ( cb )
 {
@@ -131,6 +133,28 @@ function renderTsTranspile ( cb )
 	cb();
 };
 
+function renderJsTranspile ( cb )
+{
+	gulp.src( 'src/views/**/*.js' )
+		// .pipe( sourcemaps.init() )
+		.pipe( babel( {
+			presets: [ 'env' ]
+		} ) )
+		// .pipe( concat( 'all.js' ) )
+		// .pipe( sourcemaps.write( '.' ) )
+		.pipe( gulp.dest( './res/' ) )
+		.on( 'error', reportError )
+		.on( 'finish', () =>
+		{
+			notifier.notify( {
+				title: "Javascript transpiled",
+				message: "Javascript transpiled",
+				icon: './core/components/gulp/ts.png'
+			} );
+		} );
+	cb();
+}
+
 function makeAutoload ( cb )
 {
 	child_process.execSync( process.cwd() + path.sep + "conductor.js dump-autoload" );
@@ -180,6 +204,11 @@ exports.watch = function ( cb )
 	);
 
 	gulp.watch(
+		[ 'src/views/**/*.js', '!core/**/*.js', '!src/views/templates/**/*', '!src/views/styles/**/*' ],
+		renderJsTranspile
+	);
+
+	gulp.watch(
 		[ 'src/views/**/*.ejs' ],
 		gulp.series( templatesClean, templatesCopy )
 	);
@@ -195,7 +224,8 @@ exports.default = gulp.series(
 	clean,
 	gulp.parallel(
 		sassTranspile,
-		mainTsTranspile
+		mainTsTranspile,
+		renderJsTranspile
 	),
 	gulp.series( templatesClean, templatesCopy )
 );

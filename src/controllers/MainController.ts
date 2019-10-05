@@ -7,7 +7,7 @@ export default class MainController extends Controller
 	{
 		let window = {
 			width: 800, height: 600, show: false, transparent: false,
-			opacity: 0, title: "Rhapsody",
+			opacity: 0, title: "Itiel",
 			webPreferences: { nodeIntegration: false, contextIsolation: true, webSecurity : false },
 			onReady: ( event : Event ) =>
 			{
