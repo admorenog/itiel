@@ -11,6 +11,8 @@ const path = require( 'path' );
 const sourcemaps = require( 'gulp-sourcemaps' );
 const babel = require( 'gulp-babel' );
 const concat = require( 'gulp-concat' );
+const webpack_stream = require('webpack-stream');
+const webpack = require('webpack-stream');
 
 function clean ( cb )
 {
@@ -136,13 +138,15 @@ function renderTsTranspile ( cb )
 function renderJsTranspile ( cb )
 {
 	gulp.src( 'src/views/**/*.js' )
-		// .pipe( sourcemaps.init() )
-		.pipe( babel( {
-			presets: [ 'env' ]
-		} ) )
-		// .pipe( concat( 'all.js' ) )
-		// .pipe( sourcemaps.write( '.' ) )
-		.pipe( gulp.dest( './res/' ) )
+		.pipe( sourcemaps.init() )
+		// .pipe( babel( {
+		// 	presets: [ '@babel/env', "@babel/react" ]
+		// } ) )
+		// .pipe( gulp.dest( 'res/scripts' ) )
+		.pipe( webpack_stream( require( './webpack.config' ) ) )
+		.pipe( gulp.dest( 'res/scripts' ) )
+		.pipe( concat( 'main.js' ) )
+		.pipe( sourcemaps.write( '.' ) )
 		.on( 'error', reportError )
 		.on( 'finish', () =>
 		{
@@ -224,8 +228,7 @@ exports.default = gulp.series(
 	clean,
 	gulp.parallel(
 		sassTranspile,
-		mainTsTranspile,
-		renderJsTranspile
+		mainTsTranspile
 	),
 	gulp.series( templatesClean, templatesCopy )
 );
