@@ -139,10 +139,6 @@ function renderJsTranspile ( cb )
 {
 	gulp.src( 'src/views/**/*.js' )
 		.pipe( sourcemaps.init() )
-		// .pipe( babel( {
-		// 	presets: [ '@babel/env', "@babel/react" ]
-		// } ) )
-		// .pipe( gulp.dest( 'res/scripts' ) )
 		.pipe( webpack_stream( require( './webpack.config' ) ) )
 		.pipe( gulp.dest( 'res/scripts' ) )
 		.pipe( concat( 'main.js' ) )
