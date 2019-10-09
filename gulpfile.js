@@ -137,7 +137,7 @@ function renderTsTranspile ( cb )
 
 function renderJsTranspile ( cb )
 {
-	gulp.src( 'src/views/**/*.js' )
+	gulp.src( 'src/views/scripts/Itiel.js' )
 		.pipe( sourcemaps.init() )
 		.pipe( webpack_stream( require( './webpack.config' ) ) )
 		.pipe( gulp.dest( 'res/scripts' ) )

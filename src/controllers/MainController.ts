@@ -13,12 +13,14 @@ export default class MainController extends Controller
 			{
 				kernel.windows.get( "main" ).show();
 
-				showSlowly( "load/loader", 0 );
+				//showSlowly( "load/loader", 0 );
+					showSlowly( "main", 0 );
+
 				setTimeout( function ()
 				{
-					kernel.windows.get( "load/loader" ).hide();
-					kernel.windows.get( "main" ).show();
-					showSlowly( "main", 0 );
+					//kernel.windows.get( "load/loader" ).hide();
+					//kernel.windows.get( "main" ).show();
+					//showSlowly( "main", 0 );
 				}, 2000 );
 
 				function showSlowly ( view : string, opacity : number )
