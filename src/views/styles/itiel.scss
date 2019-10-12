@@ -6,69 +6,8 @@ html, body, #root, #window
 	padding:0;
 }
 
-.main_menu
-{
-	border: 1px solid black;
-	height: 20px;
-	z-index: 1000;
-	background:
-		linear-gradient(135deg, #708090 21px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px),
-		linear-gradient(225deg, #708090 21px, #d9ecff 22px, #d9ecff 24px, transparent 24px, transparent 67px, #d9ecff 67px, #d9ecff 69px, transparent 69px)0 64px;
-		background-color:#708090;
-		background-size: 64px 128px;
-}
+@import 'mixins';
 
-.components_sidebar
-{
-    position: absolute;
-    border: 1px solid black;
-    z-index: 1000;
-    height: calc( 100% - 20px - 20px );
-	width: 200px;
-	background-color:white;
-	background-image: linear-gradient(90deg, rgba(200,0,0,.5) 50%, transparent 50%),
-		linear-gradient(rgba(200,0,0,.5) 50%, transparent 50%);
-	background-size:50px 50px;
-}
+@import 'widgets';
 
-.board
-{
-	position: absolute;
-    top: 20px;
-	border: 1px solid blue;
-	height: calc( 100% - 20px - 20px );
-	width: 100%;
-	background-color: #fff;
-	background-image:
-		linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
-		linear-gradient(#eee .1em, transparent .1em);
-	background-size: 100% 1.2em;
-}
-
-.console
-{
-    background-color: blanchedalmond;
-    border: 1px solid green;
-    height: 20px;
-    z-index: 1000;
-    width: 100%;
-    position: absolute;
-    bottom: 20px;
-}
-
-.status_bar
-{
-	position: absolute;
-	bottom: 0;
-	border: 1px solid pink;
-	height: 20px;
-	width: 100%;
-	z-index: 1000;
-	background:
-		radial-gradient(black 15%, transparent 16%) 0 0,
-		radial-gradient(black 15%, transparent 16%) 8px 8px,
-		radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-		radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
-		background-color:#282828;
-		background-size:16px 16px;
-}
+@import 'components';

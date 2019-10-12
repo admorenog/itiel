@@ -1,8 +1,8 @@
 import React from 'react';
 
 import MainMenu from './Components/MainMenu';
-import ComponentsSidebar from './Components/ComponentsSidebar';
-import Board from './Components/Board';
+import ComponentCatalog from './Components/ComponentCatalog';
+import Workflow from './Components/Workflow';
 import Console from './Components/Console';
 import StatusBar from './Components/StatusBar';
 
@@ -13,8 +13,8 @@ class Main extends React.Component
 		return (
 			<div id="window" className="window">
 				<MainMenu />
-				<ComponentsSidebar />
-				<Board />
+				<ComponentCatalog />
+				<Workflow />
 				<Console />
 				<StatusBar />
 			</div>

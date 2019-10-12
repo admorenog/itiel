@@ -37,13 +37,6 @@ export default class MainController extends Controller
 				}
 			}
 		};
-
-		let graphInfo = new Graph();
-
-		graphInfo.get().then( ( results : any[] ) =>
-		{
-			let vars = { ctx : config, graphInfo : results };
-			view( window, 'main', { vars : vars } );
-		} );
+		view( window, 'main', { } );
 	}
 }
