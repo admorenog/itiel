@@ -5,6 +5,7 @@ import ComponentCatalog from './Components/ComponentCatalog';
 import Workflow from './Components/Workflow';
 import Console from './Components/Console';
 import StatusBar from './Components/StatusBar';
+import Tooltip from './Components/Tooltip';
 
 class Main extends React.Component
 {
@@ -17,6 +18,7 @@ class Main extends React.Component
 				<Workflow />
 				<Console />
 				<StatusBar />
+				<Tooltip />
 			</div>
 		);
 	}

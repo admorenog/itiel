@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
 	mode: 'none',
 	output: {

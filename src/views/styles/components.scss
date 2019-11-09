@@ -17,7 +17,6 @@
     border: 1px solid black;
     z-index: 1000;
     height: calc( 100% - 20px - 20px );
-	width: 200px;
 	@include background_pattern_squares(#e7f4f8, rgb(196, 233, 245));
 }
 
@@ -61,4 +60,35 @@
 		radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
 		background-color:#282828;
 		background-size:16px 16px;
+}
+
+.help-and-tips
+{
+    z-index: 1337;
+	min-height: 100px;
+	max-height: 500px;
+	min-width: 100px;
+	max-width: 500px;
+	position: absolute;
+	background-color: #333333;
+	opacity: 0.8;
+}
+
+.help-and-tips-title
+{
+	background-color: blanchedalmond;
+	height: calc( 1rem + 10px );
+	min-width: 100%;
+	opacity: 0.5;
+	color: black;
+	padding: 5px;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
+.help-and-tips-body
+{
+    padding: 10px;
+    color: white;
 }

@@ -7,14 +7,14 @@ export default class MainController extends Controller
 	{
 		let window = {
 			width: 800, height: 600, show: false, transparent: false,
-			opacity: 0, title: "Itiel",
+			opacity: 1, title: "Itiel",
 			webPreferences: { nodeIntegration: false, contextIsolation: true, webSecurity : false },
 			onReady: ( event : Event ) =>
 			{
 				kernel.windows.get( "main" ).show();
 
-				//showSlowly( "load/loader", 0 );
-					showSlowly( "main", 0 );
+				// showSlowly( "load/loader", 0 );
+				// showSlowly( "main", 0 );
 
 				setTimeout( function ()
 				{

@@ -2,7 +2,6 @@
 
 import { app } from 'electron';
 import WindowRenderers from './system/views/windows/WindowRenderers';
-import Config from './components/Config';
 import Systray from './components/Systray';
 import Menu from './components/Menu';
 import Router from './system/routes/Router';
@@ -21,7 +20,7 @@ export default class Kernel
 
 	private static onWindowAllClosed (): void
 	{
-		if ( process.platform !== 'darwin' || !Config.config( "debug" ) )
+		if ( process.platform !== 'darwin' || !config[ "app" ][ "debug" ] )
 		{
 			app.quit();
 		}

@@ -1,8 +1,8 @@
 import React from 'react';
 
 import DockableTopbar from './Widgets/DockableTopbar';
-import Minificable from './Widgets/Minificable';
-import Closable from './Widgets/Closable';
+import Collapsable from './Widgets/Collapsable';
+import CollapsableItem from './Widgets/CollapsableItem';
 
 export default class ComponentCatalog extends React.Component
 {
@@ -15,11 +15,14 @@ export default class ComponentCatalog extends React.Component
 	render ()
 	{
 		return (
-			<div className="component_catalog">
+			<div id="component_catalog" className="component_catalog">
 				<DockableTopbar>
-					{this.props.title}
-					<Minificable/>
-					<Closable/>
+					<Collapsable title="Component catalog">
+						<CollapsableItem type="ScriptInput" text="Script Input" icon="asset://icons/icon.png"></CollapsableItem>
+						<CollapsableItem type="Transformation" text="Transformation" icon="asset://icons/Rhapsody.png"></CollapsableItem>
+						<CollapsableItem type="Output" text="Output" icon="asset://icons/icon.png"></CollapsableItem>
+						<CollapsableItem type="Filter" text="Filter" icon="asset://icons/icon.png"></CollapsableItem>
+					</Collapsable>
 				</DockableTopbar>
 				<div className="component_catalog_itemtree"></div>
 			</div>
