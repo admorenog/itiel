@@ -6,6 +6,7 @@ import Workflow from './Components/Workflow';
 import Console from './Components/Console';
 import StatusBar from './Components/StatusBar';
 import Tooltip from './Components/Tooltip';
+import Module from './Components/Module';
 
 class Main extends React.Component
 {

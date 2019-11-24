@@ -29,32 +29,26 @@ export default class CollapsableItem extends React.Component
   			event.dataTransfer.setData( "type", event.currentTarget.getAttribute( "data-type" ) );
 			event.dataTransfer.setData( "origin", "item-tree" );
 
-			// var img = new Image( 50, 60 );
-			// img.src = "asset://icons/icon.png";
-			// img.classList.add( "drag-icon" );
-			// var div = document.createElement( "div" );
-			// div.style.position = "absolute"; div.style.top = "0px"; div.style.left= "-500px";
-			// document.querySelector( 'body' ).appendChild( div );
-			// div.appendChild( img );
+			let div = document.querySelector( ".drag-shadow" );
+			div.style.top = event.y + "px";
+			div.style.left = event.x + "px";
 
 			// TODO: we cannot achieve the expected result with setDragImage, but we can
 			// create a module with transparency into the workflow and move it to the expected
-			// place.
-			// event.dataTransfer.setDragImage( div, 0, 0 );
+			// place. To remove the default drag image we can set it to a transparent pixel.
+			var img = new Image();
+			img.src = "asset://img/transparent.gif";
+			img.style.display = "none";
+			event.dataTransfer.setDragImage( img, 0, 0 );
+			event.dataTransfer.effectAllowed = "move";
+			event.dataTransfer.dropEffect = "none";
+		}, false );
 
-		} );
-
-		ReactDOM.findDOMNode( this ).addEventListener( 'dragenter', ( event ) => {
-			event.preventDefault();
-		} );
-
-		ReactDOM.findDOMNode( this ).addEventListener( 'dragleave', ( event ) => {
-			event.preventDefault();
-		} );
-
-		ReactDOM.findDOMNode( this ).addEventListener( 'dragover', ( event ) => {
-			event.preventDefault();
-			event.dataTransfer.dropEffect = 'copy';
+		ReactDOM.findDOMNode( this ).addEventListener( 'drag', ( event ) =>
+		{
+			let div = document.querySelector( ".drag-shadow" );
+			div.style.top = event.y + "px";
+			div.style.left = event.x + "px";
 		} );
 	}
 }

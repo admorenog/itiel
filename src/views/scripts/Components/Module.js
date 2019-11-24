@@ -20,16 +20,22 @@ export default class Module extends React.Component
 		this.type = props.type;
 		this.x = props.x;
 		this.y = props.y;
+		this.shadow = props.shadow;
+		this.icon = null;
+		if( this.type )
+		{
+			this.icon = "module-" + props.type;
+		}
 	}
 
 	render ()
 	{
 		return (
 			<div
-				className={ "module " + this.type } draggable="true"
+				className={ "module " + this.type + " " + this.shadow } draggable="true"
 				style={ { position : 'absolute', left: this.x, top: this.y } }
 				data-type={ this.type } data-name={ this.name }>
-				<div className={ "module-icon" }></div>
+				<div className={ "module-icon" + " " + this.icon }></div>
 				<div className={ "module-text" }>{ this.name }</div>
 			</div>
 		);
@@ -38,23 +44,30 @@ export default class Module extends React.Component
 	componentDidMount()
 	{
 		ReactDOM.findDOMNode( this ).addEventListener( 'dragstart', ( event ) => {
-			// event.stopPropagation();
+			event.stopPropagation();
   			event.dataTransfer.setData( "type", event.currentTarget.getAttribute( "data-type" ) );
   			event.dataTransfer.setData( "name", event.currentTarget.getAttribute( "data-name" ) );
   			event.dataTransfer.setData( "origin", "workflow" );
+			var img = new Image();
+			img.src = "asset://img/transparent.gif";
+			img.style.display = "none";
+			event.dataTransfer.setDragImage( img, 0, 0 );
+			event.dataTransfer.effectAllowed = "move";
+			event.dataTransfer.dropEffect = "none";
 		} );
 
 		ReactDOM.findDOMNode( this ).addEventListener( 'dragenter', ( event ) => {
-			event.preventDefault();
-		} );
-
-		ReactDOM.findDOMNode( this ).addEventListener( 'dragleave', ( event ) => {
+			// We need to prevent dragenter and dragover to get the drop event.
 			event.preventDefault();
 		} );
 
 		ReactDOM.findDOMNode( this ).addEventListener( 'dragover', ( event ) => {
+			// We need to prevent dragenter and dragover to get the drop event.
 			event.preventDefault();
-			event.dataTransfer.dropEffect = 'copy';
+		} );
+
+		ReactDOM.findDOMNode( this ).addEventListener( 'drop', ( event ) => {
+			event.preventDefault();
 		} );
 
 		document.addEventListener( 'mouseover', ( event ) => {
@@ -117,9 +130,5 @@ export default class Module extends React.Component
 			}
 		} );
 
-
-		document.addEventListener( "drop", ( event ) => {
-			debugger;
-		} );
 	}
 }

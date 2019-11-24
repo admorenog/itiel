@@ -7,7 +7,15 @@ export default class Workflow extends React.Component
 	constructor ( props )
 	{
 		super( props );
-		this.state = { modules : { } };
+		this.state = { modules : {
+			shadow: {
+				name : "",
+				type : "",
+				x : -500,
+				y : 0,
+				shadow: "drag-shadow"
+			}
+		} };
 	}
 
 	render ()
@@ -20,6 +28,7 @@ export default class Workflow extends React.Component
 				type={ item.type }
 				x={ item.x }
 				y={ item.y }
+				shadow={ item.shadow }
 			/>);
 		} );
 		return (
@@ -32,17 +41,13 @@ export default class Workflow extends React.Component
 	componentDidMount()
 	{
 		document.addEventListener( "drop", ( event ) => {
-			event.preventDefault();
-			debugger;
 			if( event.target.matches( ".workflow" ) )
 			{
-				console.log( event );
 				event.stopPropagation();
 				var name = event.dataTransfer.getData( "name" );
 				var type = event.dataTransfer.getData( "type" );
 				var origin = event.dataTransfer.getData( "origin" );
-
-				debugger;
+				console.log( name, type, origin );
 
 				let modules = this.state.modules;
 				let module = null;
@@ -67,6 +72,16 @@ export default class Workflow extends React.Component
 
 				this.setState( {...this.state, modules } );
 			}
+		} );
+
+		ReactDOM.findDOMNode( this ).addEventListener( 'dragenter', ( event ) => {
+			// We need to prevent dragenter and dragover to get the drop event.
+			event.preventDefault();
+		} );
+
+		ReactDOM.findDOMNode( this ).addEventListener( 'dragover', ( event ) => {
+			// We need to prevent dragenter and dragover to get the drop event.
+			event.preventDefault();
 		} );
 	}
 
